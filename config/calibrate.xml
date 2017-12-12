@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<calibration>
+    <tp id="A" threshold="4.5"/>
+    <tp id="B" threshold="4.5"/>
+    <tp id="C" threshold="4.5"/>
+    <tp id="Q" threshold="4.5"/>
+</calibration>

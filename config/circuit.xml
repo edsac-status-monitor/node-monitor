@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<circuit>
+    <tp min="0.1" max="5" id="A"/>
+    <tp min="0.1" max="5" id="B"/>
+    <tp min="0.1" max="5" id="C"/>
+    <tp min="0.1" max="5" id="Q">
+        <or valve_no="18">
+            <ref>A</ref>
+            <ref>B</ref>
+            <ref>C</ref>
+        </or>
+    </tp>
+</circuit>

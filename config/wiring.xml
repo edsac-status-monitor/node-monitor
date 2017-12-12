@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<wiring hold-pin="31">
+    <tp id="A" pin="11" resistor="0A" attenuation="1"/>
+    <tp id="B" pin="13" resistor="0B" attenuation="1"/>
+    <tp id="C" pin="15" resistor="1A" attenuation="1"/>
+    <tp id="Q" pin="7" resistor="1B" attenuation="1"/>
+</wiring>
