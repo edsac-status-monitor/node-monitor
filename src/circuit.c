@@ -200,9 +200,7 @@ void freeWiring(Wiring* wiring) {
 void readInTPValues(Wiring* wiring, int* dest) {
     int i;
     digitalWrite(wiring->holdGpioPin, LOW);
-    delayMicroseconds(50);
     for(i = 0; i < wiring->nWires; i++) {
-        //dest[wiring->wires[i]->tpIndex] = 0;
         dest[wiring->wires[i]->tpIndex] = digitalRead(wiring->wires[i]->gpioPin);
     }
     digitalWrite(wiring->holdGpioPin, HIGH);

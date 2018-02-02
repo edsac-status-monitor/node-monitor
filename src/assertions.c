@@ -85,6 +85,16 @@ void freeNodeIdMap(NodeIdMap* map) {
     }
 }
 
+int getIndexOfTPByName(AssertionsSet* set, const char* name) {
+    int i;
+    for(i = 0; i < set->nTp; i++) {
+        if(strcmp(set->tps[i]->tpName, name) == 0) {
+            return i;
+        }
+    }
+    return -1;
+}
+
 int getIndexOfTPNodeInSet(AssertionsSet* set, xmlNode* node) {
     int i;
     for(i = 0; i < set->nTp; i++) {
@@ -102,13 +112,6 @@ int* parseNode(xmlNode* node, NodeIdMap* map, int* depthOut, int* valveNoOut) {
     int* truth = NULL; 
     int* truth2 = NULL;
     int depth1, depth2;
-    /*if(xmlHasProp(node, ATTR_NAME_ID)) {
-        contents = xmlGetProp(node, ATTR_NAME_ID);
-        printf("parseNode(%s{id=%s})\n", node->name, contents);
-        xmlFree(contents);
-    } else {
-        printf("parseNode(%s)\n", node->name);
-    }*/
     if(strEqual(node->name, NODE_NAME_REF)) {
         contents = xmlNodeListGetString(node->doc, node->children, 1);
         truth = parseNode(findNodeInMap(map, contents), map, depthOut, valveNoOut);
@@ -260,6 +263,7 @@ AssertionsSet* createAssertionSetFromXMLNode(xmlNode* circuitNode) {
         }
         child = child->next;
     }
+    
     LinkedListSortingNode* ll = NULL;
     for(i = 0; i < set->nTp; i++) {
         tmpTruth = parseNode(tpNodes[i],nodeMap,&tmpDepth,&tmpValveNo);

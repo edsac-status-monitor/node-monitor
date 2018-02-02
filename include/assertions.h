@@ -37,6 +37,7 @@ struct LinkedListSortingNode {
     LinkedListSortingNode* next;
 };
 
+int getIndexOfTPByName(AssertionsSet* set, const char* name);
 int getIndexOfTPNodeInSet(AssertionsSet* set, xmlNode* node);
 AssertionsSet* createAssertionSetFromXMLNode(xmlNode* circuitNode);
 void freeAssertionSet(AssertionsSet* set);

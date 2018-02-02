@@ -37,7 +37,6 @@ Threshold* createThreshold(int wiringIndex, float value) {
     assert((t = malloc(sizeof(Threshold))) != NULL);
     t->wireIndex = wiringIndex;
     t->value = value;
-    //printf("createThreshold(%d,%f) => %f\n", wiringIndex, value, t->value);
     return t;
 }
 
@@ -185,20 +184,10 @@ void writeOutCallibrationStream(int spiChannel, Wiring* wiring, Calibration* cal
         wiringIndex = calibration->thresholds[i]->wireIndex;
         if(wiring->wires[wiringIndex]->resistor.resistor == stream) {
             indexFromEnd = wiring->nResistorChips - 1 - wiring->wires[wiringIndex]->resistor.chip;
-            /*printf("[%d]: %f => %hhx\n", 
-                    wiring->wires[wiringIndex]->resistor.chip,
-                    calibration->thresholds[i]->value,
-                    getResistanceValue(calibration->thresholds[i]->value)
-                    );*/
             streamData[(indexFromEnd*2)] = commandByte;
             streamData[(indexFromEnd*2)+1] = getResistanceValue(wiring, wiringIndex, calibration->thresholds[i]->value);
         }
     }
-    /*printf("Stream %d:\n", stream);
-    i = 0;
-    while(i < wiring->nResistorChips * 2) {
-        printf("[%d]: 0x%02hhx%02hhx\n", (int)(i/2), streamData[i++], streamData[i++]);
-    }*/
     wiringPiSPIDataRW(spiChannel, streamData, wiring->nResistorChips * 2);
     free(streamData);
 }

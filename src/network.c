@@ -16,7 +16,7 @@ NetworkHandle* setupNetwork(const char* addrStr, int port) {
     state = start_sending(adr, sizeof(*adr));
     free(adr);
     if(state != true) {
-        fprintf(stderr, "Could not start sending");
+        fprintf(stderr, "Could not start sending\n");
         return NULL;
     }
     NetworkHandle* network = malloc(sizeof(NetworkHandle));
@@ -30,7 +30,7 @@ int sendNetworkMessage(NetworkHandle* network, int valveNo, char* msg) {
     state = send_message(network->msgStruct);
     free_message(network->msgStruct);
     if(state != true) {
-        fprintf(stderr, "Could not send message");
+        fprintf(stderr, "Could not send message\n");
         return -1;
     }
     return 1;
